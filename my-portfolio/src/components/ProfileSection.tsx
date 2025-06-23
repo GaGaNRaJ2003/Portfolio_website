@@ -67,24 +67,17 @@ const ProfileSection: React.FC<Props> = ({ profile_image_url, about, name = "Gag
     setIsTyping(true);
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          history: newHistory,
-          name: name,
-          linkedin: linkedin,
-        }),
-      });
+      const response = await llm.invoke([
+        { role: "system", content: buildSystemPrompt(name, linkedin) },
+        ...newHistory
+      ]);
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await response.json();
-      const botContent = data.message;
+      const botContent =
+        typeof response.content === "string"
+          ? response.content
+          : Array.isArray(response.content)
+            ? response.content.map((c: any) => (typeof c === "string" ? c : c.text || "")).join(" ")
+            : "";
 
       const botMessage = {
         id: Date.now() + 1,
