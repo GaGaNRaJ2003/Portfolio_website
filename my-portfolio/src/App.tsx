@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import NavBar from './components/NavBar';
 import ProfileSection from './components/ProfileSection';
-import get_data from './utils/DataScraper/ApifyClient';
+// The get_data import is no longer needed as we will use fallback data exclusively.
+// import get_data from './utils/DataScraper/ApifyClient';
 import SkillsSection from './components/SkillsSection';
 import ExperienceSection from './components/ExperienceSection';
 import ProjectGrid from './components/ProjectsGrid';
@@ -12,42 +13,15 @@ import ContactForm from './components/ContactForm';
 import { fallbackData } from './utils/fallbackData.ts';
 
 function App() {
-  const [data, setData] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [data, setData] = useState<any>(fallbackData);
+  const [loading, setLoading] = useState(false); // Data is loaded instantly, so no loading state.
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // Try to fetch data from API with a timeout
-                const timeoutPromise = new Promise((_, reject) => 
-                    setTimeout(() => reject(new Error('API timeout')), 120000)
-                );
-                
-                const dataPromise = get_data();
-                const result: any = await Promise.race([dataPromise, timeoutPromise]);
-                
-                // Check if the result is valid and access the first element
-                if (result && result.length > 0) {
-                    setData(result[0]); // Set the object, not the array, to state
-                } else {
-                   throw new Error("No data received from API.");
-                }
-            } catch (err: any) {
-                console.warn("API failed, using fallback data:", err.message);
-                // Use fallback data instead of showing error
-                setData(fallbackData);
-            } finally {
-                setLoading(false);
-            }
-        };
+  // The entire useEffect for data fetching is replaced.
+  // We now use fallbackData directly, ensuring no API calls are made.
 
-        fetchData();
-    }, []);
+  const DataString = JSON.stringify(data);
 
-    const DataString = JSON.stringify(data);
-
-    if (loading) {
+  if (loading) {
     return (
       <div className="loading-container">
         <div className="loading-content">
@@ -74,17 +48,15 @@ function App() {
       <NavBar />
       <main>
         <ProfileSection
-          profile_image_url={data.basic_info.profile_picture_url}
+          profile_image_url={data.basic_info.profile_image_url}
           about={data.basic_info.about}
           linkedin={String(DataString)}
         >
           <h1 className="profile-name">{data.basic_info.name}</h1>
-          <p className="profile-title">Software Developer @ HashedIn by Deloitte</p>
         </ProfileSection>
-        <SkillsSection data={data} />
+        <SkillsSection skills={data.categorized_skills} />
         <ExperienceSection experienceData={data.experience}/>
         <ProjectGrid projects={data.projects}/>
-        <CertificateGrid certifications={data.certifications}/>
         <section id="contact">
           <ContactForm/>
           <ContactSection/>

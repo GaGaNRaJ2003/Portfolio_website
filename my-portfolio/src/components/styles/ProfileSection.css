@@ -13,7 +13,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 80px 20px;
+    padding: 45px 20px;
     position: relative;
     overflow: hidden;
 }
@@ -150,6 +150,18 @@ body {
     max-width: 1000px;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.9);
+}
+
+.welcome-description .github-link {
+    font-weight: 700; /* bold */
+    color: #8b5cf6; /* purple */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.welcome-description .github-link:hover {
+    color: #6366f1;
+    text-decoration: underline;
 }
 
 /* Chat Interface */

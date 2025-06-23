@@ -1,86 +1,96 @@
 export const fallbackData = {
   "basic_info": {
-    "name": "Ch Varun",
-    "headline": "SDE-1@Hashedin by Deloitte | Full Stack Developer | AI Enthusiast | Innovator in Gen AI, MERN Stack & Computer Vision | Driving Real-World Impact through Cutting-Edge Technology",
-    "profile_image_url": "https://media.licdn.com/dms/image/v2/D5603AQGtW-0k1r7tSw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724755488319?e=1755129600&v=beta&t=kBNVmjLARnBbBE-irTR2YMHVAg3zCbNCc4yATeh9Xco",
-    "about": "🚀Turning code into cutting-edge solutions & the future one line at a time! 🌐 Educated at Amrita Vishwa Vidyapeetham with a strong footing in Computer and Communication Engineering, my journey has been about more than just grades—it's a story of passion, projects, and impact. From revamping real-time control in Cyber-Physical Systems to pioneering plant disease prediction tools, my work stands at the intersection of innovation and real-world challenges. 🌿\n\n👩‍💻 Fluent in languages like C, Python, and JavaScript, and frameworks such as React Native & Flutter, I bring versatility and depth to the table. Projects like creating a Sensor-fusion-based Elderly Fall Detection System spotlight my team leadership and technical prowess, improving lives while pushing tech boundaries.\n\n🏆 Recognized with 2nd place at Smart India Hackathon for a sustainable city project, my journey reflects a blend of academia and real-life impact. As an enthusiast for Machine Learning, my ventures into AI for agricultural efficiency and environmental management have not only earned accolades but also opened new realms of possibility.\n\n🌱 I'm on the lookout for opportunities to contribute to dynamic teams and make meaningful advancements in technology and society. Let's connect and explore how we can chart new territories together!",
+    "name": "Gagan Raj Singh",
+    "headline": "B.Tech CSAM Student at IIIT Delhi | Research Intern at UIUC | Aspiring Software Engineer",
+    "profile_image_url": "pfp.jpg",
+    "about": "Hey! I'm a CSAM senior at IIIT-Delhi, passionate about ML, NLP, and building stuff that actually works. I've interned at UIUC (CAT-LM: LLMs + unit tests = 🚀), explored multimodal knowledge graphs on my own, and hacked together everything from a Bluetooth sniffer to a food CLI, a game, and even my own Unix shell.",
     "location": {
       "country": "India",
-      "city": "Hyderabad, Telangana",
-      "full": "Hyderabad, Telangana, India",
+      "city": "Delhi",
+      "full": "Delhi, India",
       "country_code": "IN"
     }
   },
   "experience": [
     {
-      "title": "SDE 1",
-      "company": "HashedIn by Deloitte",
-      "location": "On-site",
-      "description": "Software developer 1",
-      "duration": "May 2025 - Present · 2 mos"
+      "title": "Summer Research Intern",
+      "company": "UIUC",
+      "location": "Remote",
+      "description": "Research under Dr. Darko Marinov — CAT-LM Project (ASE 2023).\n- Researching CAT-LM, a 2.7B parameter GPT-style model designed for unit test generation from aligned code-test pairs.\n- Studying the CAT-LM model architecture, training objectives, and large-scale dataset involving 14.4M code files and 1.1M code-test pairs; analyzing the impact of extending input context length up to 2^13 tokens on test generation quality.\n- Evaluating benchmarks against existing LLMs (e.g., StarCoder, CodeGen) on tasks like test completion and assertion generation.",
+      "duration": "May 2025 - Present"
     },
     {
-      "title": "Intern",
-      "company": "HashedIn by Deloitte",
-      "location": "Bengaluru, Karnataka, India",
-      "duration": "Feb 2025 - May 2025 · 4 mos"
+      "title": "Independent Research on MMKG",
+      "company": "MIDAS Labs @ IIITD",
+      "location": "New Delhi, India",
+      "description": "Developed advanced Multimodal Knowledge Graph (MMKG) system to integrate structured and unstructured data (text, images) for AI-driven knowledge representation.\n- Key contributions: Improved entity alignment accuracy by 22% via novel cross-modal embedding architectures, reduced model training time by 40%, boosted multimodal retrieval by 15%, and cut inference latency by 30% with scalable KG pipelines.",
+      "duration": "May 2024 - Dec 2024"
     },
     {
-      "title": "Investor Relations Intern",
-      "company": "Zealopia",
-      "location": "Mumbai Metropolitan Region",
-      "duration": "Dec 2024 - Feb 2025 · 3 mos",
-      "skills": ["Business and Program Management"]
-    },
-    {
-      "title": "Club Member",
-      "company": "CAMHI",
-      "location": "Chennai, Tamil Nadu, India",
-      "duration": "Sep 2023 - Dec 2024 · 1 yr 4 mos",
-      "skills": ["Debugging", "Modeling and Simulation"]
-    },
-    {
-      "title": "Full Stack Developer",
-      "company": "DeepDive",
-      "location": "Singapore",
-      "description": "Developed backend APIs using AWS Lambda functions and REST APIs, integrated with OpenAI for PDF summarization, and built frontend functionalities including search and OAuth.",
-      "duration": "Apr 2024 - Jul 2024 · 4 mos",
-      "skills": ["Front-End Development", "open ai"]
-    },
-    {
-      "title": "Student Intern",
-      "company": "Water and Land Management Training and Research Institute",
-      "location": "Hyderabad, Telangana, India",
-      "description": "Contributed to the research project: \"Development of Sensor-Based Real-Time Water Level Measurement and Irrigation Scheduling System in Paddy Fields for Increasing Water Use Efficiency.\"",
-      "duration": "Jul 2022 - Aug 2022 · 2 mos",
-      "skills": ["Front-End Development", "Management"]
+      "title": "Teaching Assistant - Communication Skills",
+      "company": "IIIT Delhi",
+      "location": "New Delhi, India",
+      "description": "Assisted in teaching the communication skills course to undergraduate students, providing feedback on assignments and facilitating class discussions.",
+      "duration": "Aug 2023 - Dec 2023"
     }
   ],
   "projects": [
     {
-      "name": "Neural Net from Scratch",
-      "description": "A modular implementation of neural networks using NumPy, demonstrating fundamental concepts of deep learning including various layer types and activation functions."
+      "name": "Bluetooth Sneak Detector | Python, BLEAK, FastAPI, React, PostgreSQL",
+      "description": "Developed a real-time Bluetooth scanner to detect unauthorized devices in exams using RSSI-based proximity tracking. Achieved 92% detection accuracy with sub-1.5s scan latency and built a full-stack dashboard for live monitoring."
     },
     {
-      "name": "PDF Summarizer",
-      "description": "A full-stack application for summarizing PDF documents using Gemini AI, with a Flask backend and MongoDB for database management."
+      "name": "SparkLynx | Python, MySQL",
+      "description": "Built a real-time CLI app for food order management with login, partner assignment, and order status updates. Cut query latency by 30% via indexing and query tuning."
+    },
+    {
+        "name": "Simple Unix Shell | C",
+        "description": "Implemented a minimal shell that supports command execution, piping, I/O redirection, and core process control. Achieved robust error handling and process management via system calls."
     }
   ],
-  "certifications": [
+  "skills": [
+      { "name": "Python" }, { "name": "C/C++" }, { "name": "Java" },
+      { "name": "HTML/CSS" }, { "name": "JavaScript" }, { "name": "SQL" },
+      { "name": "Bash" }, { "name": "React.js" }, { "name": "Node.js" },
+      { "name": "MySQL" }, { "name": "MongoDB" }, { "name": "Prisma" },
+      { "name": "Git" }, { "name": "GitHub" }, { "name": "VSCode" },
+      { "name": "Numpy" }, { "name": "Pandas" }, { "name": "PyTorch" },
+      { "name": "Scikit-learn" }, { "name": "NetworkX" }, { "name": "SpaCy" },
+      { "name": "JavaFX" }, { "name": "Machine Learning" },
+      { "name": "Natural Language Processing" }, { "name": "Data Structures" },
+      { "name": "Algorithms" }
+  ],
+  "categorized_skills": [
     {
-      "name": "Full Stack Web Development",
-      "issuer": "Udemy",
-      "issued_date": "2024"
+      "category": "Languages",
+      "skills": [
+        { "name": "Python" }, { "name": "C/C++" }, { "name": "Java" },
+        { "name": "HTML/CSS" }, { "name": "JavaScript" }, { "name": "SQL" },
+        { "name": "Bash" }
+      ]
     },
     {
-      "name": "Machine Learning Specialist",
-      "issuer": "DeepLearning.AI",
-      "issued_date": "2024"
+      "category": "Frameworks & Libraries",
+      "skills": [
+        { "name": "React.js" }, { "name": "Node.js" }, { "name": "Numpy" },
+        { "name": "Pandas" }, { "name": "PyTorch" }, { "name": "Scikit-learn" },
+        { "name": "NetworkX" }, { "name": "SpaCy" }, { "name": "JavaFX" }
+      ]
     },
     {
-      "name": "TypeScript Fundamentals",
-      "issuer": "Microsoft",
-      "issued_date": "2022"
+      "category": "Databases & Tools",
+      "skills": [
+        { "name": "MySQL" }, { "name": "MongoDB" }, { "name": "Prisma" },
+        { "name": "Git" }, { "name": "GitHub" }, { "name": "VSCode" }
+      ]
+    },
+    {
+      "category": "Expertise Areas",
+      "skills": [
+        { "name": "Machine Learning" }, { "name": "Natural Language Processing" },
+        { "name": "Data Structures" }, { "name": "Algorithms" }
+      ]
     }
-  ]
+  ],
+  "certifications": []
 }; 

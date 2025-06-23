@@ -168,12 +168,6 @@ npm run deploy
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 👨‍💻 Author
-
-**Ch Varun**
-- Software Developer @ HashedIn by Deloitte
-- GitHub: [@TheCoder30ec4](https://github.com/TheCoder30ec4)
-- LinkedIn: [Ch Varun](https://www.linkedin.com/in/ch-varun/)
 
 ## 🙏 Acknowledgments
 

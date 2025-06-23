@@ -7,7 +7,7 @@ interface Props {
   projects: Project[];
 }
 
-const ProjectGrid = ({ projects }: Props) => {
+const ProjectGrid = ({ projects = [] }: Props) => {
   return (
     <section className="projects-section" id="projects">
       <h2 className="section-title">My Projects</h2>

@@ -35,7 +35,7 @@ const groupExperienceByCompany = (experiences: Experience[]) => {
   return Object.values(grouped);
 };
 
-const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experienceData }) => {
+const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experienceData = [] }) => {
   const groupedExperience = groupExperienceByCompany(experienceData);
 
   return (

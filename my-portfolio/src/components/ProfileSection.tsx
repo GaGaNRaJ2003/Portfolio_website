@@ -19,7 +19,7 @@ const llm = new ChatGroq({
 });
 
 
-const ProfileSection: React.FC<Props> = ({ profile_image_url, about, name = "Ch.Varun", linkedin, children }) => {
+const ProfileSection: React.FC<Props> = ({ profile_image_url, about, name = "Gagan Raj Singh", linkedin, children }) => {
     // console.log(linkedin)
     if(!linkedin){
         linkedin="";
@@ -67,17 +67,24 @@ const ProfileSection: React.FC<Props> = ({ profile_image_url, about, name = "Ch.
     setIsTyping(true);
 
     try {
-      const response = await llm.invoke([
-        { role: "system", content: buildSystemPrompt(name, linkedin) },
-        ...newHistory
-      ]);
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          history: newHistory,
+          name: name,
+          linkedin: linkedin,
+        }),
+      });
 
-      const botContent =
-        typeof response.content === "string"
-          ? response.content
-          : Array.isArray(response.content)
-            ? response.content.map((c: any) => (typeof c === "string" ? c : c.text || "")).join(" ")
-            : "";
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      const botContent = data.message;
 
       const botMessage = {
         id: Date.now() + 1,
@@ -112,12 +119,12 @@ const ProfileSection: React.FC<Props> = ({ profile_image_url, about, name = "Ch.
         <div className="profile-image"><img src={profile_image_url} alt="Profile" /></div>
         <div className="profile-info">
           <h1 className="profile-name">{name}</h1>
-          <p className="profile-title">Software Developer @ HashedIn by Deloitte</p>
+          <p className="profile-title">Senior @ IIIT Delhi | Research Intern @ UIUC</p>
         </div>
         <div className="welcome-section">
           <h2 className="welcome-title">Welcome to my Portfolio-Website</h2>
           <p className="welcome-description">
-            {about} Here is my GitHub, you can explore my projects: <a href="https://github.com/TheCoder30ec4">GitHub</a>
+            {about} Here is my GitHub, you can explore my projects: <a href="https://github.com/GaGaNRaJ2003" className="github-link" target="_blank" rel="noopener noreferrer"><strong>GitHub</strong></a>
           </p>
         </div>
 

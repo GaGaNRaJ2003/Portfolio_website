@@ -5,11 +5,12 @@ import { Clock, MapPin } from 'lucide-react'; // Icons for details
 
 interface ExperienceItemProps {
   experience: Experience;
+  isLastRole: boolean;
 }
 
-const ExperienceItem: React.FC<ExperienceItemProps> = ({ experience }) => {
+const ExperienceItem: React.FC<ExperienceItemProps> = ({ experience, isLastRole }) => {
   return (
-    <div className="role-card">
+    <div className={`role-card ${isLastRole ? 'last' : ''}`}>
       <div className="role-card-content">
         <h4 className="role-card-title">{experience.title}</h4>
         <div className="role-card-meta">

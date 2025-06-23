@@ -15,10 +15,10 @@ const ContactForm = () =>{
         if(!formRef.current) return;
 
         emailjs.sendForm(
-            'service_fy86g1u',
-            'template_r7wyvll',
+            'service_bn14xnr',
+            'template_7r3qp0y',
             formRef.current,
-            'bl-3uhi2T1y2wFxGa'
+            'GJqgw-w-0T8oM-CMT'
         ).then(()=> {
             setstatus('sent');
             setName('');

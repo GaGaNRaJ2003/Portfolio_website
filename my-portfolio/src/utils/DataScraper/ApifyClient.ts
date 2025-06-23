@@ -1,8 +1,8 @@
 // src/DataScraper/get_data.ts
 
 const get_data = async ({
-  url = "https://www.linkedin.com/in/ch-varun/",
-  api_token = "apify_api_khHJAzd0dbHxZSgarkHmhBjDfDlbR803ixV3",
+  url = "https://www.linkedin.com/in/gagan-raj-singh-52861a247/",
+  api_token = "apify_api_5UfdSRdyr9u7wGIwnbMFfSWR789Tus4dntC7",
 } = {}) => {
   const actorId = "VhxlqQXRwhW8H5hNV";
 

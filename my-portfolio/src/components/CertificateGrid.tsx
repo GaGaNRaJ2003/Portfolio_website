@@ -6,7 +6,7 @@ interface Props {
   certifications: Certification[];
 }
 
-const CertificationGrid = ({ certifications }: Props) => {
+const CertificationGrid = ({ certifications = [] }: Props) => {
   return (
     <section className="cert-section">
       <h2 className="section-title">Certifications</h2>

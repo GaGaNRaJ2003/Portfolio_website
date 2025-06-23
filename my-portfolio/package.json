@@ -2,7 +2,7 @@
   "name": "my-portfolio",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://TheCoder30ec4.github.io/Portfolio_website",
+  "homepage": "https://GaGaNRaJ2003.github.io/Portfolio_website",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@types/node": "^24.0.3",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",

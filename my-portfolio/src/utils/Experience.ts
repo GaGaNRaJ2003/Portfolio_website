@@ -9,6 +9,7 @@ export interface Experience {
     duration: string;
     title: string;
     company:string;
+    start_date: ExperienceDate;
     end_date?:ExperienceDate;
     is_current:boolean;
     company_linkedin_url:string;
