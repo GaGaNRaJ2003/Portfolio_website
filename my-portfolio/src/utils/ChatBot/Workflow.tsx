@@ -1,6 +1,5 @@
 // LangGraphChatbot.ts
 
-import { ChatGroq } from "@langchain/groq";
 import {
   START,
   END,
@@ -9,6 +8,8 @@ import {
   MemorySaver,
 } from "@langchain/langgraph";
 import { v4 as uuidv4 } from "uuid";
+import { groqClient } from "../groqClient";
+import type { GroqMessage } from "../groqClient";
 
 // ---- Message Type ---- //
 export type ChatMessage = {
@@ -22,13 +23,6 @@ export type CalibrationProps = {
   summary?: string;
   linkedin: string;
 };
-
-// ---- Create LLM ---- //
-const llm = new ChatGroq({
-  model: "llama3-70b-8192", // or "llama-3-70b-8192" depending on Groq's model naming
-  temperature: 0,
-  apiKey: import.meta.env.VITE_GROQ_API_KEY,
-});
 
 // ---- System Prompt Builder ---- //
 const buildSystemPrompt = ({ name, summary, linkedin }: CalibrationProps): string => {
@@ -49,13 +43,23 @@ const buildSystemPrompt = ({ name, summary, linkedin }: CalibrationProps): strin
 // ---- LangGraph Node ---- //
 const callModel = (systemPrompt: string) => {
   return async (state: typeof MessagesAnnotation.State) => {
-    const messagesWithSystem: ChatMessage[] = [
+    const messagesWithSystem: GroqMessage[] = [
       { role: "system", content: systemPrompt },
-      ...state.messages as unknown as ChatMessage[],
+      ...state.messages as unknown as GroqMessage[],
     ];
 
-    const response = await llm.invoke(messagesWithSystem);
-    return { messages: [...messagesWithSystem, response] };
+    const response = await groqClient.chat({
+      messages: messagesWithSystem,
+      model: "llama3-70b-8192",
+      temperature: 0
+    });
+
+    const assistantMessage: GroqMessage = {
+      role: "assistant",
+      content: response.choices[0]?.message?.content || ""
+    };
+
+    return { messages: [...messagesWithSystem, assistantMessage] };
   };
 };
 

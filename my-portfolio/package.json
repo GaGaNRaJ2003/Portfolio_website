@@ -2,6 +2,7 @@
   "name": "my-portfolio",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://GaGaNRaJ2003.github.io/Portfolio_website",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -15,10 +16,12 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@langchain/groq": "^0.2.2",
+    "@langchain/langgraph": "^0.3.5",
     "apify-client": "^2.12.5",
     "dotenv": "^16.5.0",
     "lightbox.js-react": "^1.5.6",
     "lucide-react": "^0.522.0",
+    "node-fetch": "^3.3.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

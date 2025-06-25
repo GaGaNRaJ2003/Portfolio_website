@@ -2,7 +2,7 @@
 
 const get_data = async ({
   url = "https://www.linkedin.com/in/gagan-raj-singh-52861a247/",
-  api_token = import.meta.env.VITE_APIFY_API_TOKEN || "apify_api_5UfdSRdyr9u7wGIwnbMFfSWR789Tus4dntC7",
+  api_token = "apify_api_5UfdSRdyr9u7wGIwnbMFfSWR789Tus4dntC7",
 } = {}) => {
   const actorId = "VhxlqQXRwhW8H5hNV";
 

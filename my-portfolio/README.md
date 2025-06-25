@@ -1,218 +1,93 @@
-# AI-Powered Dynamic Portfolio Website
+# Portfolio Website
 
-A modern, interactive portfolio website built with React, TypeScript, and Vite that dynamically loads data from LinkedIn and features an AI-powered chat interface.
+A modern, responsive portfolio website built with React, TypeScript, and Vite. Features an AI-powered chat interface using Groq API.
 
 ## 🚀 Features
 
-### Core Functionality
-- **Dynamic Data Loading**: Real-time LinkedIn profile data scraping using Apify API
-- **AI Chat Interface**: Interactive chatbot powered by Groq LLM (Llama3 models)
-- **Intelligent Skills Categorization**: Automatic organization of skills using AI
-- **Responsive Design**: Modern, mobile-friendly UI with smooth animations
-- **Contact Integration**: Direct messaging through EmailJS
+- **Modern UI/UX**: Beautiful, responsive design with smooth animations
+- **AI Chat Interface**: Interactive chat with Groq LLM integration
+- **Secure Backend**: Lightweight Express.js backend for secure API key management
+- **Project Showcase**: Dynamic project grid with filtering
+- **Skills Visualization**: Interactive skills section
+- **Contact Form**: Functional contact form with email integration
+- **Mobile Responsive**: Optimized for all device sizes
 
-### Portfolio Sections
-- **Profile Section**: Hero section with AI chat interface
-- **Skills Section**: AI-categorized skills with visual tree layout
-- **Experience Section**: Professional experience timeline
-- **Projects Grid**: Showcase of technical projects
-- **Certifications**: Professional certifications display
-- **Contact Form**: Direct communication channel
+## 🔒 Security
 
-## 🛠️ Tech Stack
+This project now includes a **secure backend** to protect your Groq API key:
 
-### Frontend
-- **React 19** - Modern React with latest features
-- **TypeScript** - Type-safe development
-- **Vite** - Fast build tool and dev server
-- **CSS3** - Custom styling with animations
+- ✅ **No API Key Exposure**: API keys are never exposed in client-side code
+- ✅ **Backend Proxy**: All Groq API calls go through a secure Express.js backend
+- ✅ **CORS Protection**: Configured cross-origin request handling
+- ✅ **Environment Variables**: Secure configuration management
 
-### AI & APIs
-- **Groq LLM** - High-performance AI models (Llama3-70b, Llama3-8b)
-- **LangChain** - AI/LLM application framework
-- **Apify** - Web scraping for LinkedIn data
-- **EmailJS** - Contact form email service
+## 🛠️ Setup
 
-### Development Tools
-- **ESLint** - Code linting and formatting
-- **Vercel** - Deployment platform
+### Prerequisites
+- Node.js 18+ (recommended: Node.js 20+)
+- npm or yarn
+- Groq API key
 
-## 📦 Installation
+### 1. Frontend Setup
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/TheCoder30ec4/Portfolio_website.git
-   cd Portfolio_website/my-portfolio
-   ```
+```bash
+# Install dependencies
+npm install
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+# Start development server
+npm run dev
+```
 
-3. **Set up environment variables**
-   Copy the environment template and fill in your API keys:
-   ```bash
-   cp env.example .env
-   ```
-   
-   Edit `.env` with your actual API keys:
-   ```env
-   VITE_GROQ_API_KEY=your_groq_api_key
-   VITE_APIFY_API_TOKEN=your_apify_api_token
-   VITE_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
-   ```
+### 2. Backend Setup
 
-4. **Run the development server**
-   ```bash
-   npm run dev
-   ```
+```bash
+# Navigate to backend directory
+cd backend
 
-5. **Build for production**
-   ```bash
-   npm run build
-   ```
+# Install dependencies
+npm install
 
-## 🔧 Configuration
+# Copy environment configuration
+cp env.example .env
 
-### API Keys Required
-- **Groq API Key**: For AI chat and skills categorization
-- **Apify API Token**: For LinkedIn data scraping
-- **EmailJS Credentials**: For contact form functionality
+# Edit .env and add your Groq API key
+# GROQ_API_KEY=your_actual_groq_api_key_here
 
-### Environment Variables
+# Start backend server
+npm run dev
+```
+
+### 3. Environment Variables
+
+**Frontend (.env):**
 ```env
-VITE_GROQ_API_KEY=your_groq_api_key
-VITE_APIFY_API_TOKEN=your_apify_api_token
-VITE_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
+VITE_BACKEND_URL=http://localhost:3001
+```
+
+**Backend (.env):**
+```env
+GROQ_API_KEY=your_actual_groq_api_key_here
+PORT=3001
+NODE_ENV=development
+ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000
 ```
 
 ## 🚀 Deployment
 
-### Vercel Deployment (Recommended)
-
-1. **Install Vercel CLI**
-   ```bash
-   npm i -g vercel
-   ```
-
-2. **Deploy to Vercel**
-   ```bash
-   vercel
-   ```
-
-3. **Set Environment Variables in Vercel Dashboard**
-   - Go to your project dashboard on Vercel
-   - Navigate to Settings → Environment Variables
-   - Add the following environment variables:
-     - `VITE_GROQ_API_KEY`: Your Groq API key
-     - `VITE_APIFY_API_TOKEN`: Your Apify API token
-     - `VITE_EMAILJS_PUBLIC_KEY`: Your EmailJS public key
-
-4. **Redeploy with Environment Variables**
-   ```bash
-   vercel --prod
-   ```
-
-### Manual Deployment
-1. Build the project: `npm run build`
-2. Deploy the `dist` folder to your hosting service
-
-## 🔒 Security Notes
-
-- **Never commit API keys to version control**
-- **Use environment variables for all sensitive data**
-- **The `.env` file is already in `.gitignore**
-- **Vercel environment variables are encrypted and secure**
-
-## 🏗️ Project Structure
-
-```
-src/
-├── components/           # React components
-│   ├── ProfileSection.tsx    # Hero section with AI chat
-│   ├── SkillsSection.tsx     # AI-categorized skills
-│   ├── ExperienceSection.tsx # Professional experience
-│   ├── ProjectsGrid.tsx      # Projects showcase
-│   ├── CertificateGrid.tsx   # Certifications display
-│   ├── ContactForm.tsx       # Contact form
-│   ├── NavBar.tsx            # Navigation
-│   └── styles/               # Component-specific CSS
-├── utils/                # Utility functions
-│   ├── DataScraper/          # Apify integration
-│   ├── fallbackData.ts       # Static data fallback
-│   ├── skillsData.ts         # Skills data structure
-│   └── ChatBot/              # AI chat utilities
-├── App.tsx               # Main application component
-└── main.tsx              # Application entry point
+### Frontend (GitHub Pages)
+```bash
+npm run deploy
 ```
 
-## 🤖 AI Features
+### Backend Deployment
+The backend can be deployed to any Node.js hosting service:
 
-### Chat Interface
-- **Real-time Conversations**: Ask questions about the portfolio owner
-- **Context-Aware Responses**: AI uses LinkedIn data for accurate answers
-- **Professional Tone**: Maintains professional communication style
-- **Quick Responses**: Optimized for 1-2 line answers
+1. **Vercel**: Connect your backend folder to Vercel
+2. **Railway**: Deploy directly from GitHub
+3. **Heroku**: Use the provided Procfile
+4. **DigitalOcean App Platform**: Deploy as a Node.js app
 
-### Skills Categorization
-- **Automatic Grouping**: AI organizes skills into logical categories
-- **Dynamic Categories**: Frontend, Backend, Languages, Databases, etc.
-- **Visual Tree Layout**: Interactive skills visualization
-- **Fallback Support**: Graceful degradation without AI
-
-## 📱 Responsive Design
-
-The website is fully responsive and optimized for:
-- Desktop computers
-- Tablets
-- Mobile devices
-- Various screen sizes and orientations
-
-## 🔄 Data Flow
-
-1. **Initial Load**: Attempts to fetch LinkedIn data via Apify
-2. **Fallback**: Uses static data if API fails
-3. **AI Integration**: Groq LLM powers chat and skills categorization
-4. **User Interaction**: Real-time responses and dynamic content updates
-
-## 🛡️ Error Handling
-
-- **API Timeout**: 2-minute timeout for data fetching
-- **Graceful Degradation**: Falls back to static data
-- **Loading States**: User-friendly loading indicators
-- **Error Messages**: Clear error communication
-
-## 📈 Performance
-
-- **Fast Loading**: Vite-powered development and build
-- **Optimized Assets**: Compressed images and efficient bundling
-- **Lazy Loading**: Components load as needed
-- **Caching**: Browser caching for static assets
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -am 'Add feature'`
-4. Push to branch: `git push origin feature-name`
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🙏 Acknowledgments
-
-- **Groq** for high-performance AI models
-- **Apify** for web scraping capabilities
-- **EmailJS** for contact form functionality
-- **React Team** for the amazing framework
-- **Vite Team** for the fast build tool
-
----
-
-⭐ **Star this repository if you find it helpful!**
+**Important**: Set your environment variables in your hosting platform's dashboard.
 
 ## 🔧 Troubleshooting
 
@@ -227,6 +102,12 @@ If the build fails with missing dependencies:
 npm install lucide-react
 npm run build
 ```
+
+#### Backend Connection Issues
+If the frontend can't connect to the backend:
+1. Ensure the backend is running on the correct port
+2. Check your `VITE_BACKEND_URL` environment variable
+3. Verify CORS settings in the backend
 
 #### Node Version Issues
 The project requires Node.js 18+ (recommended: Node.js 20+). Update Node.js if you encounter engine warnings:
@@ -244,3 +125,44 @@ If the dev server doesn't start:
 npm run clean  # Clean install
 npm run dev
 ```
+
+## 🔄 Data Flow
+
+The application now uses a secure architecture:
+
+```
+Frontend (React) → Backend (Express) → Groq API
+```
+
+1. **Frontend**: Sends chat requests to backend
+2. **Backend**: Validates requests and forwards to Groq API with secure API key
+3. **Groq API**: Returns responses through backend
+4. **Backend**: Forwards responses to frontend
+
+## 📁 Project Structure
+
+```
+my-portfolio/
+├── src/                    # Frontend source code
+│   ├── components/         # React components
+│   ├── utils/             # Utilities and API clients
+│   └── ...
+├── backend/               # Express.js backend
+│   ├── server.js          # Main server file
+│   ├── package.json       # Backend dependencies
+│   └── README.md          # Backend documentation
+├── public/                # Static assets
+└── ...
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+MIT License - feel free to use and modify as needed.

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './styles/ProfileSection.css';
-import { ChatGroq } from '@langchain/groq';
+import { groqClient } from '../utils/groqClient';
+import type { GroqMessage } from '../utils/groqClient';
 
 
 interface Props {
@@ -10,13 +11,6 @@ interface Props {
   linkedin?: string;
   children?: React.ReactNode;
 }
-
-
-const llm = new ChatGroq({
-  model: "llama3-70b-8192",
-  temperature: 0,
-  apiKey: import.meta.env.VITE_GROQ_API_KEY,
-});
 
 
 const ProfileSection: React.FC<Props> = ({ profile_image_url, about, name = "Gagan Raj Singh", linkedin, children }) => {
@@ -35,7 +29,7 @@ const ProfileSection: React.FC<Props> = ({ profile_image_url, about, name = "Gag
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const chatMessagesContainerRef = useRef<HTMLDivElement | null>(null);
-  const [conversationHistory, setConversationHistory] = useState<{ role: string; content: string }[]>([]);
+  const [conversationHistory, setConversationHistory] = useState<GroqMessage[]>([]);
 
   const scrollToBottom = () => {
     if (chatMessagesContainerRef.current) {
@@ -60,24 +54,26 @@ const ProfileSection: React.FC<Props> = ({ profile_image_url, about, name = "Gag
       timestamp: new Date()
     };
 
-    const newHistory = [...conversationHistory, { role: 'user', content: inputValue }];
+    const newHistory = [...conversationHistory, { role: 'user' as const, content: inputValue }];
     setConversationHistory(newHistory);
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsTyping(true);
 
     try {
-      const response = await llm.invoke([
-        { role: "system", content: buildSystemPrompt(name, linkedin) },
+      const systemPrompt = buildSystemPrompt(name, linkedin);
+      const messages: GroqMessage[] = [
+        { role: "system", content: systemPrompt },
         ...newHistory
-      ]);
+      ];
 
-      const botContent =
-        typeof response.content === "string"
-          ? response.content
-          : Array.isArray(response.content)
-            ? response.content.map((c: any) => (typeof c === "string" ? c : c.text || "")).join(" ")
-            : "";
+      const response = await groqClient.chat({
+        messages,
+        model: "llama3-70b-8192",
+        temperature: 0
+      });
+
+      const botContent = response.choices[0]?.message?.content || '';
 
       const botMessage = {
         id: Date.now() + 1,
@@ -87,9 +83,17 @@ const ProfileSection: React.FC<Props> = ({ profile_image_url, about, name = "Gag
       };
 
       setMessages(prev => [...prev, botMessage]);
-      setConversationHistory([...newHistory, { role: 'assistant', content: botContent }]);
+      setConversationHistory([...newHistory, { role: 'assistant' as const, content: botContent }]);
     } catch (err) {
-      console.error(err);
+      console.error('Chat error:', err);
+      // Add error message to chat
+      const errorMessage = {
+        id: Date.now() + 1,
+        text: "Sorry, I'm having trouble responding right now. Please try again later.",
+        sender: 'bot',
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsTyping(false);
     }
