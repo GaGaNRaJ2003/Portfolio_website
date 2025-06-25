@@ -10,35 +10,69 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// EMERGENCY CORS FIX - Add headers to ALL requests
+// PERMANENT CORS FIX FOR PRODUCTION DEPLOYMENT
+const allowedOrigins = [
+  'https://gaganraj2003.github.io',
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://localhost:3000'
+];
+
+// Add environment variable origins if they exist
+if (process.env.ALLOWED_ORIGINS) {
+  const envOrigins = process.env.ALLOWED_ORIGINS.split(',');
+  allowedOrigins.push(...envOrigins);
+}
+
 app.use((req, res, next) => {
-  // Allow specific origins
-  const allowedOrigins = [
-    'https://gaganraj2003.github.io',
-    'http://localhost:5173',
-    'http://localhost:5174',
-    'http://localhost:3000'
-  ];
-  
   const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
+  
+  // Log CORS requests for debugging
+  console.log(`CORS Request from: ${origin}`);
+  
+  // Allow requests with no origin (like mobile apps or curl requests)
+  if (!origin) {
+    console.log('No origin header, allowing request');
+    return next();
   }
   
+  // Check if origin is allowed
+  if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+    console.log(`CORS allowed for: ${origin}`);
+  } else {
+    console.log(`CORS blocked for: ${origin}`);
+    console.log('Allowed origins:', allowedOrigins);
+  }
+  
+  // Set CORS headers
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
   res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Max-Age', '86400'); // 24 hours
   
+  // Handle preflight requests
   if (req.method === 'OPTIONS') {
+    console.log('Handling OPTIONS preflight request');
     res.sendStatus(200);
   } else {
     next();
   }
 });
 
-// CORS configuration - TEMPORARY FIX FOR PRODUCTION
+// Additional CORS middleware as backup
 app.use(cors({
-  origin: true, // Allow all origins temporarily
+  origin: function (origin, callback) {
+    // Allow requests with no origin
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    
+    console.log(`CORS middleware blocked: ${origin}`);
+    return callback(new Error('Not allowed by CORS'));
+  },
   credentials: true,
   optionsSuccessStatus: 200,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
