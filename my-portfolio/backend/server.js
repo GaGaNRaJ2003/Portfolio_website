@@ -10,29 +10,20 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// CORS configuration - PRODUCTION SAFE
-const allowedOrigins = [
-  'https://gaganraj2003.github.io',
-  'https://gaganraj2003.github.io/Portfolio_website',
-  'http://localhost:5173',
-  'http://localhost:5174',
-  'http://localhost:3000'
-];
-
+// DEBUG: Log incoming Origin and allow all origins for debugging
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error('Not allowed by CORS'));
-    }
+    console.log('CORS request from origin:', origin);
+    return callback(null, true); // Allow all origins for debugging
   },
   credentials: true,
   optionsSuccessStatus: 200,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
+
+// Ensure preflight OPTIONS requests are handled
+app.options('*', cors());
 
 // Health check endpoint
 app.get('/health', (req, res) => {
